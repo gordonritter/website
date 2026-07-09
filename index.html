@@ -1,9 +1,338 @@
-<!doctype html>
-<html>
-  <head>
-    <title>This is the title of the webpage!</title>
-  </head>
-  <body>
-    <p>This is an example paragraph. Anything in the <strong>body</strong> tag will appear on the page, just like this <strong>p</strong> tag and its contents.</p>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gordon Ritter</title>
+<meta name="description" content="Gordon Ritter — research in machine learning, optimal execution, and quantitative finance. Publications and teaching.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fcfbf7;
+    --ink:#1f1d1a;
+    --muted:#6d685f;
+    --faint:#e7e2d6;
+    --accent:#34435f;
+    --accent-hover:#1f2b42;
+    --measure:44rem;
+  }
+
+  *{box-sizing:border-box}
+
+  html{-webkit-text-size-adjust:100%}
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"EB Garamond", Garamond, Georgia, "Times New Roman", serif;
+    font-weight:400;
+    font-size:20px;
+    line-height:1.62;
+    font-feature-settings:"onum" 1,"liga" 1,"kern" 1;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  .wrap{
+    max-width:var(--measure);
+    margin:0 auto;
+    padding:5.5rem 1.5rem 4rem;
+  }
+
+  a{
+    color:var(--accent);
+    text-decoration:none;
+    border-bottom:1px solid rgba(52,67,95,0.28);
+    transition:color .15s ease, border-color .15s ease;
+  }
+  a:hover{color:var(--accent-hover);border-bottom-color:var(--accent-hover)}
+
+  /* ---- Header ---- */
+  header{margin-bottom:2.2rem}
+
+  h1{
+    font-weight:600;
+    font-size:2.9rem;
+    line-height:1.05;
+    letter-spacing:.005em;
+    margin:0 0 .5rem;
+  }
+
+  .roles{
+    font-size:1.08rem;
+    color:var(--muted);
+    font-style:italic;
+    line-height:1.5;
+    margin:0;
+  }
+
+  /* ---- In-page nav ---- */
+  nav{
+    margin:1.6rem 0 0;
+    padding-top:1.2rem;
+    border-top:1px solid var(--faint);
+    font-size:.82rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-weight:600;
+  }
+  nav a{
+    color:var(--muted);
+    border-bottom:none;
+    margin-right:.35rem;
+  }
+  nav a:hover{color:var(--accent)}
+  nav span.sep{color:var(--faint);margin-right:.35rem}
+
+  /* ---- Sections ---- */
+  section{margin-top:3.1rem}
+
+  h2{
+    font-size:.82rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    color:var(--muted);
+    margin:0 0 1.3rem;
+    padding-bottom:.5rem;
+    border-bottom:1px solid var(--faint);
+  }
+
+  p{margin:0 0 1.05rem}
+  section p:last-child{margin-bottom:0}
+
+  .lead{font-size:1.05rem}
+
+  .interests{
+    color:var(--muted);
+    font-style:italic;
+    margin-top:1.1rem;
+  }
+
+  /* ---- Publications ---- */
+  h3{
+    font-size:1.18rem;
+    font-weight:600;
+    font-style:italic;
+    margin:2.1rem 0 1rem;
+    color:var(--ink);
+  }
+  h3:first-of-type{margin-top:0}
+
+  .entry{
+    display:grid;
+    grid-template-columns:3.4rem 1fr;
+    column-gap:1.1rem;
+    margin-bottom:1.05rem;
+  }
+  .entry .year{
+    color:var(--muted);
+    font-variant-numeric:lining-nums;
+    font-feature-settings:"lnum" 1;
+    white-space:nowrap;
+    padding-top:.02rem;
+  }
+  .entry .cite{margin:0}
+  .entry .cite em{font-style:italic}
+  .entry .cite b{font-weight:600}
+  .entry .title{color:var(--ink)}
+
+  /* ---- Teaching ---- */
+  .teach{margin-bottom:1.05rem}
+  .teach .inst{font-weight:600}
+  .teach .detail{color:var(--muted)}
+
+  /* ---- Contact ---- */
+  .contact-links{margin-top:.4rem}
+  .contact-links a{margin-right:.2rem}
+  .contact-links span.sep{color:var(--faint);margin:0 .55rem}
+
+  /* ---- Footer ---- */
+  footer{
+    margin-top:3.5rem;
+    padding-top:1.3rem;
+    border-top:1px solid var(--faint);
+    font-size:.9rem;
+    color:var(--muted);
+  }
+
+  /* ---- Responsive ---- */
+  @media (max-width:540px){
+    body{font-size:18px}
+    .wrap{padding:3.25rem 1.25rem 3rem}
+    h1{font-size:2.3rem}
+    .entry{grid-template-columns:1fr;row-gap:.15rem;margin-bottom:1.2rem}
+    .entry .year{font-size:.82rem;letter-spacing:.04em}
+    nav a{display:inline-block;margin-bottom:.35rem}
+  }
+
+  /* ---- Print ---- */
+  @media print{
+    :root{--bg:#fff;--ink:#000}
+    body{font-size:11pt}
+    .wrap{max-width:none;padding:0}
+    nav{display:none}
+    a{color:#000;border:none}
+    section{margin-top:1.6rem}
+    .entry{page-break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Gordon Ritter</h1>
+    <p class="roles">Adjunct Professor at the Courant Institute of Mathematical Sciences, New York University, at Baruch College, CUNY, and at Columbia University. Founder of Ritter Alpha LP.</p>
+    <nav>
+      <a href="#about">About</a><span class="sep">&middot;</span>
+      <a href="#research">Research</a><span class="sep">&middot;</span>
+      <a href="#publications">Publications</a><span class="sep">&middot;</span>
+      <a href="#teaching">Teaching</a><span class="sep">&middot;</span>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="about">
+    <h2>About</h2>
+    <p class="lead">Gordon Ritter is the founder and chief executive of Ritter Alpha LP, a quantitative investment firm. He teaches graduate courses in machine learning and quantitative finance as an adjunct professor at New York University, Baruch College, and Columbia University.</p>
+    <p>Before founding Ritter Alpha, he was a senior portfolio manager at GSA Capital and a vice president in the statistical arbitrage group at Highbridge Capital Management. He earned a PhD in mathematical physics from Harvard University, where he studied under Arthur Jaffe, and an Honors BA in mathematics from the University of Chicago. In 2019 he was named Buy-Side Quant of the Year by <em>Risk</em>.</p>
+  </section>
+
+  <section id="research">
+    <h2>Research</h2>
+    <p>Ritter&rsquo;s research develops the mathematics of trading. A central theme is the use of reinforcement learning and stochastic optimal control for dynamic portfolio choice, hedging, and optimal execution, where an agent acts repeatedly under transaction costs and market impact. A second theme is portfolio construction: mean&ndash;variance optimization, Bayesian estimation, and the Black&ndash;Litterman framework.</p>
+    <p>His current work studies optimal execution when market impact is transient and nonlinear. Using perturbation theory, it describes how the optimal trading schedule responds to weak departures from the linear-impact model, and establishes conditions under which the model admits no price manipulation. Earlier in his career he worked in mathematical physics, on quantum field theory on curved spacetimes and on the algebra of quantum information.</p>
+    <p class="interests">Reinforcement learning in finance &nbsp;&middot;&nbsp; Optimal execution and market microstructure &nbsp;&middot;&nbsp; Market impact modeling &nbsp;&middot;&nbsp; Portfolio optimization and Bayesian methods &nbsp;&middot;&nbsp; Statistical machine learning</p>
+  </section>
+
+  <section id="publications">
+    <h2>Publications</h2>
+
+    <h3>Book</h3>
+    <div class="entry">
+      <div class="year">2025</div>
+      <p class="cite"><b>G. Ritter</b>. <span class="title">Statistical Machine Learning with Applications in Finance.</span> <em>World Scientific</em>.</p>
+    </div>
+
+    <h3>Selected working papers</h3>
+    <div class="entry">
+      <div class="year">2025</div>
+      <p class="cite"><b>G. Ritter</b>. <span class="title">Perturbation theory for nonlinear transient impact.</span> Working paper.</p>
+    </div>
+    <div class="entry">
+      <div class="year">2022</div>
+      <p class="cite">B. Baldacci, J. Benveniste, and <b>G. Ritter</b>. <span class="title">Optimal turnover, liquidity, and autocorrelation.</span> <em>Risk</em>; arXiv:2110.03810.</p>
+    </div>
+    <div class="entry">
+      <div class="year">2017</div>
+      <p class="cite">J. Benveniste and <b>G. Ritter</b>. <span class="title">Optimal microstructure trading with a long-term utility function.</span> Working paper, SSRN&nbsp;3057570.</p>
+    </div>
+
+    <h3>Quantitative finance</h3>
+    <div class="entry">
+      <div class="year">2024</div>
+      <p class="cite">J. Benveniste, P. N. Kolm, and <b>G. Ritter</b>. <span class="title">Untangling universality and dispelling myths in mean&ndash;variance optimization.</span> <em>The Journal of Portfolio Management</em> 50(8), 90&ndash;116.</p>
+    </div>
+    <div class="entry">
+      <div class="year">2021</div>
+      <p class="cite">P. N. Kolm, <b>G. Ritter</b>, and J. Simonian. <span class="title">Black&ndash;Litterman and beyond: the Bayesian paradigm in investment management.</span> <em>The Journal of Portfolio Management</em> 47(5), 91&ndash;113.</p>
+    </div>
+    <div class="entry">
+      <div class="year">2020</div>
+      <p class="cite">P. N. Kolm and <b>G. Ritter</b>. <span class="title">Modern perspectives on reinforcement learning in finance.</span> <em>The Journal of Machine Learning in Finance</em> 1(1).</p>
+    </div>
+    <div class="entry">
+      <div class="year">2020</div>
+      <p class="cite">J. Du, M. Jin, P. N. Kolm, <b>G. Ritter</b>, Y. Wang, and B. Zhang. <span class="title">Deep reinforcement learning for option replication and hedging.</span> <em>The Journal of Financial Data Science</em> 2(4), 44&ndash;57.</p>
+    </div>
+    <div class="entry">
+      <div class="year">2019</div>
+      <p class="cite">P. N. Kolm and <b>G. Ritter</b>. <span class="title">Dynamic replication and hedging: a reinforcement learning approach.</span> <em>The Journal of Financial Data Science</em> 1(1), 159&ndash;171.</p>
+    </div>
+    <div class="entry">
+      <div class="year">2018</div>
+      <p class="cite"><b>G. Ritter</b>. <span class="title">Reinforcement learning in finance.</span> In <em>Big Data and Machine Learning in Quantitative Investment</em>, Wiley, 225&ndash;250.</p>
+    </div>
+    <div class="entry">
+      <div class="year">2017</div>
+      <p class="cite"><b>G. Ritter</b>. <span class="title">Machine learning for trading.</span> <em>Risk</em> 30(10), 84&ndash;89.</p>
+    </div>
+    <div class="entry">
+      <div class="year">2017</div>
+      <p class="cite">P. N. Kolm and <b>G. Ritter</b>. <span class="title">On the Bayesian interpretation of Black&ndash;Litterman.</span> <em>European Journal of Operational Research</em> 258(2), 564&ndash;572.</p>
+    </div>
+    <div class="entry">
+      <div class="year">2016</div>
+      <p class="cite"><b>G. Ritter</b>. <span class="title">Stable linear-time optimization in arbitrage pricing theory models.</span> <em>Risk</em> 29(9), 82&ndash;85.</p>
+    </div>
+    <div class="entry">
+      <div class="year">2015</div>
+      <p class="cite">P. N. Kolm and <b>G. Ritter</b>. <span class="title">Multiperiod portfolio selection and Bayesian dynamic models.</span> <em>Risk</em> 28(3), 50&ndash;54.</p>
+    </div>
+
+    <h3>Mathematical physics</h3>
+    <div class="entry">
+      <div class="year">2008</div>
+      <p class="cite">A. Jaffe and <b>G. Ritter</b>. <span class="title">Reflection positivity and monotonicity.</span> <em>Journal of Mathematical Physics</em> 49(5), 052301.</p>
+    </div>
+    <div class="entry">
+      <div class="year">2008</div>
+      <p class="cite">L. Carbone, M. Ershov, and <b>G. Ritter</b>. <span class="title">Abstract simplicity of complete Kac&ndash;Moody groups over finite fields.</span> <em>Journal of Pure and Applied Algebra</em> 212(10), 2147&ndash;2162.</p>
+    </div>
+    <div class="entry">
+      <div class="year">2007</div>
+      <p class="cite"><b>G. Ritter</b>. <span class="title">A Hardy&ndash;Ramanujan formula for Lie algebras.</span> <em>Experimental Mathematics</em> 16(3), 375&ndash;384.</p>
+    </div>
+    <div class="entry">
+      <div class="year">2007</div>
+      <p class="cite">A. Jaffe and <b>G. Ritter</b>. <span class="title">Quantum field theory on curved backgrounds, I. The Euclidean functional integral.</span> <em>Communications in Mathematical Physics</em> 270(2), 545&ndash;572.</p>
+    </div>
+    <div class="entry">
+      <div class="year">2005</div>
+      <p class="cite">W. G. Ritter. <span class="title">Quantum channels and representation theory.</span> <em>Journal of Mathematical Physics</em> 46(8), 082103.</p>
+    </div>
+    <div class="entry">
+      <div class="year">2005</div>
+      <p class="cite">W. G. Ritter. <span class="title">Number of representations providing noiseless subsystems.</span> <em>Physical Review A</em> 72, 062328.</p>
+    </div>
+    <div class="entry">
+      <div class="year">2005</div>
+      <p class="cite">W. G. Ritter. <span class="title">Lie algebras and suppression of decoherence in open quantum systems.</span> <em>Physical Review A</em> 72, 012305.</p>
+    </div>
+    <div class="entry">
+      <div class="year">2004</div>
+      <p class="cite">W. G. Ritter. <span class="title">Vacuum geometry of the N = 2 Wess&ndash;Zumino model.</span> <em>Communications in Mathematical Physics</em> 251(1), 133&ndash;156.</p>
+    </div>
+  </section>
+
+  <section id="teaching">
+    <h2>Teaching</h2>
+    <p>Ritter teaches graduate courses in quantitative and computational finance, with an emphasis on machine learning, optimal execution, and portfolio management.</p>
+    <div class="teach"><span class="inst">Courant Institute, NYU.</span> <span class="detail">Mathematics in Finance (MFE): machine learning and advanced econometric modeling for finance.</span></div>
+    <div class="teach"><span class="inst">Baruch College, CUNY.</span> <span class="detail">Financial Engineering (MFE): portfolio management and algorithmic trading.</span></div>
+    <div class="teach"><span class="inst">Columbia University.</span> <span class="detail">Graduate topics in quantitative finance.</span></div>
+    <p style="margin-top:1.1rem">He has also lectured at Rutgers University on algorithmic trading, portfolio management, and continuous-time finance, and has supervised numerous master&rsquo;s theses.</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:ritter@post.harvard.edu">ritter@post.harvard.edu</a></p>
+    <p class="contact-links">
+      <a href="https://cims.nyu.edu/~ritter/GordonRitterCV.pdf">Curriculum Vitae</a><span class="sep">&middot;</span>
+      <a href="https://scholar.google.com/citations?user=iJefa0EAAAAJ&amp;hl=en">Google Scholar</a><span class="sep">&middot;</span>
+      <a href="https://math-finance.cims.nyu.edu/team/gordon-ritter/">NYU Courant profile</a><span class="sep">&middot;</span>
+      <a href="https://cims.nyu.edu/~ritter/">Academic homepage</a>
+    </p>
+  </section>
+
+  <footer>
+    Gordon Ritter &middot; Last updated July 2026
+  </footer>
+
+</div>
+</body>
 </html>
